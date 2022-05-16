@@ -3,3 +3,257 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+
+body {
+	position: relative;
+	font-family: 'Nunito', sans-serif;
+	font-weight: normal;
+	font-size: 16px;
+	color: black;
+	height: 100vh;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	padding: 18px;
+	background-color: #0b3533;
+}
+
+.products {
+	max-width: 540px;
+	width: 100%;
+	background-color: #fff;
+	border-radius:10px;
+	padding: 18px 24px;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 4px 10px 8px;
+	border-bottom: 2px solid #0b3533;
+}
+
+.header__title {
+	font-size: 18px;
+	font-weight: 600;
+	padding-right: 10px;
+}
+
+.header__button {
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: 500;
+	text-transform: uppercase;
+	padding: 5px 20px;
+	outline: none;
+	border: none;
+	border-radius: 15px;
+	background-color: #4bd39a;
+	cursor: pointer;
+	box-shadow: 0px 0px 7px 3px rgba(34, 60, 80, 0.22);
+	transition: background-color 0.3s linear;
+}
+
+.header__button:hover, .header__button:focus {
+	background-color: #389d73;
+	transition: background-color 0.3s linear;
+}
+
+.header__button:active {
+	transform: scale(0.98);
+}
+
+.products__list {
+	padding-top: 10px;
+}
+
+.products__list-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+.products__list-title h2 {
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.product {
+	padding-top: 10px;
+}
+
+.product__item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border: 1px solid #0b353347;
+	padding: 8px 10px;
+	border-radius: 20px;
+	box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.product__item:nth-child(n+2) {
+	margin-top: 10px;
+}
+
+.product__name {
+	width: 40%;
+	text-align: left;
+	overflow: hidden;
+}
+
+.product__price {
+	width: 20%;
+	text-align: center;
+	overflow: hidden;
+}
+
+.product__buttons {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	/* text-align: right; */
+	width: 40%;
+}
+
+.product__button {
+	border: none;
+	width: 20px;
+	height: 20px;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	cursor: pointer;
+}
+
+.product__button_edit {
+	background-image: url('../img/logo/edit.svg');
+}
+
+.product__button_remove {
+	margin-left: 6px;
+	background-image: url('../img/logo/remove.svg');
+}
+
+.product__button_edit:hover, .product__button_remove:hover {
+	transform: scale(1.05);
+}
+
+.products__list-no_items {
+	font-size: 16px;
+	color: grey;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+
+/* Popup */
+
+.popup {
+	/* display: none; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.popup::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* z-index: -1; */
+	z-index: 0;
+
+}
+
+.popup__window {
+  width: 400px;
+  text-align: center;
+  border-radius: 14px;
+  padding: 18px;
+  background-color: white;
+	z-index: 5;
+}
+
+.popup__title {
+  font-size: 20px;
+}
+
+label {
+  display: inline-block;
+  width: 100%;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(72, 72, 72);
+  text-align: left;
+  padding-left: 10px;
+  margin-bottom: 2px;
+}
+
+label:nth-child(n+2) {
+  margin-top: 14px;
+}
+
+input {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(72, 72, 72);
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid grey;
+	box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+input::placeholder {
+  opacity: 0.6;
+}
+
+.popup__buttons {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.popup__button {
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 20px;
+  background-color: #4bd39a;
+  cursor: pointer;
+	box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.popup__button:hover, .popup__button:focus {
+  background-color: #389d73;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.popup__button:active {
+	transform: scale(0.98);
+	/* transition: */
+}
+
+.hidden {
+	display: none;
+}

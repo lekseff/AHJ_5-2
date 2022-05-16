@@ -6,9 +6,57 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
   <title>CRM</title>
 </head>
 <body>
+  <div class="container">
+    <div class="products">
+      <header class="products__header header">
+        <h1 class="header__title">Список товаров</h1>
+        <button class="header__button">Добавить</button>
+      </header>
+      <div class="products__list">
+        <div class="products__list-title">
+          <h2>Название</h2>
+          <h2>Стоимость</h2>
+          <h2>Действия</h2>
+        </div>
+        <div class="products__list-item product">
+
+          <div class="product__item">
+            <div class="product__name">Смартфон</div>
+            <div class="product__price">60000</div>
+            <div class="product__buttons">
+              <button class="product__button product__button_edit"></button>
+              <button class="product__button product__button_remove"></button>
+            </div>
+          </div>
+
+          <div class="products__list-no_items hidden">
+            Список пуст
+          </div>          
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="popup hidden">
+    <div class="popup__window">
+      <!-- <h3 class="popup__title">Название чего-то</h3> -->
+      <form>
+        <label for="name">Название</label>
+        <input type="text" name="name" id="name" placeholder="Название">
+        <label for="price">Стоимость</label>
+        <input type="text" name="price" id="price" placeholder="Стоимость">
+        <div class="popup__buttons">
+          <button class="popup__button popup__button_save">Сохранить</button>
+          <button class="popup__button popup__button_cancel">Отмена</button>
+        </div>
+      </form>      
+    </div>
+  </div>
+
 </body>
 </html>
