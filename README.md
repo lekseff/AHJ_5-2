@@ -1,8 +1,8 @@
-![example workflow](https://github.com/lekseff/AHJ_4_1/actions/workflows/ci_test.yml/badge.svg)
+![example workflow](https://github.com/lekseff/AHJ_5-2/actions/workflows/ci_test.yml/badge.svg)
 
-![example workflow](https://github.com/lekseff/AHJ_4_1/actions/workflows/e2e.yml/badge.svg)
+![example workflow](https://github.com/lekseff/AHJ_5-2/actions/workflows/e2e.yml/badge.svg)
 
-![example workflow](https://github.com/lekseff/AHJ_4_1/actions/workflows/deploy.yml/badge.svg)
+![example workflow](https://github.com/lekseff/AHJ_5-2/actions/workflows/deploy.yml/badge.svg)
 
 ### Редактор списка* (задача со звёздочкой)
 
