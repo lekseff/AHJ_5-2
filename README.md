@@ -4,7 +4,9 @@
 
 ![example workflow](https://github.com/lekseff/AHJ_5-2/actions/workflows/deploy.yml/badge.svg)
 
-### Редактор списка* (задача со звёздочкой)
+[GitHub Pages](https://lekseff.github.io/AHJ_5-2/)
+
+### Редактор списка
 
 #### Легенда
 
