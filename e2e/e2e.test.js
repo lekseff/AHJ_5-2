@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import puppeteer from 'puppeteer';
 import { fork } from 'child_process';
 
@@ -21,9 +22,9 @@ describe('Credit Card Validator form', () => {
     });
 
     browser = await puppeteer.launch({
-      // headless: false, // show gui
-      // slowMo: 250,
-      // devtools: true, // show devTools
+      headless: false, // show gui
+      slowMo: 250,
+      devtools: true, // show devTools
     });
     page = await browser.newPage();
   });
@@ -33,21 +34,73 @@ describe('Credit Card Validator form', () => {
     server.kill();
   });
 
-  test.each([
-    ['maestro', '6772742259014549862'],
-    ['visa', '4960147956718208'],
-    ['mastercard', '5472146019720845'],
-    ['amexp', '375117485929854'],
-    ['jcb', '3562995574833351'],
-    ['discover', '6011991981279367588'],
-    ['diners', '36076941062307'],
-    ['unionpay', '6259427708773239'],
-    ['mir', '2200238127479053'],
-  ])(('Test type: %s'), async (type, number) => {
+  test('Проверка появления popup', async () => {
     await page.goto(baseUrl);
-    const input = await page.$('#number');
-    await input.type(number);
-    await page.waitForSelector(`.${type}-color`);
-    await page.waitForSelector(`.${type}`);
+    const addButton = await page.$('.header__button');
+    await addButton.click();
+    await page.waitFor(() => !document.querySelector('.popup.hidden'));
+  });
+
+  test('Добавляем элемент продукта', async () => {
+    await page.goto(baseUrl);
+    const addButton = await page.$('.header__button');
+    const nameInput = await page.$('#popup-name');
+    const priceInput = await page.$('#popup-price');
+    const saveButton = await page.$('.popup__button_save');
+    await addButton.click();
+    await nameInput.focus();
+    await nameInput.type('Телевизор');
+    await priceInput.focus();
+    await priceInput.type('20000');
+    await saveButton.click();
+    await page.waitFor('.product__item');
+  });
+
+  test('Удаление элемента', async () => {
+    await page.goto(baseUrl);
+    const addButton = await page.$('.header__button');
+    const nameInput = await page.$('#popup-name');
+    const priceInput = await page.$('#popup-price');
+    const saveButton = await page.$('.popup__button_save');
+    await addButton.click();
+    await nameInput.focus();
+    await nameInput.type('Телевизор');
+    await priceInput.focus();
+    await priceInput.type('20000');
+    await saveButton.click();
+    const removeButton = await page.$('.product__button_remove');
+    await removeButton.click();
+    await page.waitFor(() => !document.querySelector('.product__item'));
+  });
+
+  test('Редактирование элемента', async () => {
+    await page.goto(baseUrl);
+    const addButton = await page.$('.header__button');
+    const nameInput = await page.$('#popup-name');
+    const priceInput = await page.$('#popup-price');
+    const saveButton = await page.$('.popup__button_save');
+    await addButton.click();
+    await nameInput.focus();
+    await nameInput.type('Телевизор', { delay: 200 });
+    await priceInput.focus();
+    await priceInput.type('20000', { delay: 200 });
+    await saveButton.click();
+    const editButton = await page.$('.product__button_edit');
+    await editButton.click();
+    // Проверяем, что окно открылось
+    await page.waitFor(() => !document.querySelector('.popup.hidden'));
+    // Проверка, что поля заполнены
+    await page.waitFor(() => document.querySelector('#popup-name').value === 'Телевизор');
+    await page.waitFor(() => document.querySelector('#popup-price').value === '20000');
+    // Редактируем
+    await priceInput.focus();
+    // Удаляем старое значение в поле стоимость
+    for (let i = 0; i < 'Телевизор'.length; i += 1) {
+      await page.keyboard.press('Delete');
+    }
+    // Пишем новое значение
+    await priceInput.type('5000');
+    await saveButton.click();
+    await page.waitFor(() => document.querySelector('.product__price').textContent === '5000');
   });
 });
