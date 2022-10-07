@@ -148,7 +148,7 @@ export default class Modal {
     errorTooltip.querySelector('#error-message').textContent = text;
     errorTooltip.setAttribute('data-show', '');
     popperInstance.update();
-    element.focus();
+    // element.focus();
     setTimeout(() => {
       errorTooltip.removeAttribute('data-show');
     }, 2500);
